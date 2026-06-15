@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표</title>
+    <style>
+        table {
+            width: 600px;
+            border-collapse: collapse;
+        }
+        thead {
+            background-color: deepskyblue;
+            color: white;
+        }
+        tbody td{
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        tbody tr:hover{
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- table 태그 안에 속성을 직접 넣지 않고, CSS를 통해서 적용한다. -->
+    <table border="1" width="50%">
+        <tr>
+            <td colspan="2">1. colspan = 2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td rowspan="2">5. rowspan = 2</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>8</td>
+        </tr>
+    </table>
+    <hr>
+
+    <table>
+        <thead>
+            <tr>
+                <!-- th : 두껍게 쓰고, 가운데 정렬 -->
+                <th>이름</th>
+                <th>과목</th>
+                <th>점수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2">김사과</td>
+                <td>HTML</td>
+                <td>95</td>
+            </tr>
+            <tr>
+                <td>CSS</td>
+                <td>92</td>
+            </tr>
+            <tr>
+                <td>반하나</td>
+                <td>JavaScript</td>
+                <td>88</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

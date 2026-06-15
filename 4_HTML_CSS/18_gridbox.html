@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gridbox</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        .app {
+            width: 1100px;
+            margin: 20px auto;
+            display: grid;
+
+            grid-template-columns: 240px 20px 820px;
+            grid-template-rows: 80px 60px 500px 60px;
+            gap: 16px;
+
+            grid-template-areas:
+                "header header header"
+                "nav    nav    nav"
+                "sidebar divider main"
+                "footer footer footer";
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        header, nav, aside, main, footer, .divider {
+            border: 2px solid #000;
+            padding: 16px;
+        }
+
+        header { grid-area: header; }
+        nav { grid-area: nav; }
+        aside { grid-area: sidebar; }
+        main { grid-area: main; }
+        footer { grid-area: footer; }
+
+        .divider {
+            grid-area: divider;
+            padding: 0;
+        }
+
+        .profile {
+            width: 180px;
+            border: 1px solid #000;
+            padding: 10px;
+            justify-self: start;
+            align-items: start;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        Gridbox
+        - CSS에서 요소를 행과 열을 기준으로 배치하는 2차원 레이아수 시스템
+            display: grid;
+
+        align-* : 세로(수직)
+        justify-* : 가로(수평)
+        *-items : 모든 아이템의 기본 정렬(컨테이너에 설정)
+        *-self : 특정 아이템 1개만 설정
+
+        grid-template-columns
+        열의 개수와 크기를 설정
+        grid-template-columns: 1fr 2fr 1fr /* 값을 공백으로 나열한 개수 = 열 개수 */
+
+        grid-template-rows
+        행의 개수와 크기 설정
+        grid-template-rows: auto 200px;
+
+        grid-template-areas
+        grid를 "좌표/라인 번호"가 아니라 "이름(영역)"으로 설계하게 해주는 속성
+        grid-template-areas:
+            "header header" /* 큰따옴표 한 줄 = 한 행 */
+            "nav    main"   /* 따옴표 안의 토큰 개수 = 열 */
+            "footer footer";
+        /* "header header" 2칸(2열)이며 둘 다 header라서 가로로 2칸이 합쳐진 형태 */
+
+        gap
+        gap: 20px;
+        - row-gap, column-gap
+        - row-gap: 20px;
+        - column-gap: 20px;
+
+        justify-items
+        justify-items: center;  /* 각 셀의 가로 중앙에 위치 */
+        justify-items: row-gap; /* 행과 행 사이 간격을 동일 */
+        justify-items: stretch; /* 아이템이 각 칸의 가로폭을 꽉 채우도록 늘림 */
+        justify-items: start;   /* 각 셀의 왼쪽에 붙음 */
+        justify-items: end;     /* 각 셀의 오른쪽에 붙음 */
+        grid 컨테이너에서 각 grid 셀 안에서 아이템을 가로 방향으로 어떻게 정렬할지를 정하는 속성
+
+        align-items
+        행 방향 정렬
+
+        place-items
+        place-items: center
+        place-items = align-items(세로) + justify-items(가로)
+        세로/가로 정렬을 한 번에 설정
+
+
+        * 아이템 사용하는 속성
+        grid-column
+        grid 아이템이 가로 방향으로 어디서 시작해서 어디까지 차지할지를 정하는 속성
+        grid-column: 1 / 3;
+        1번에서 시작, 3번 전까지 차지(1열 + 2열 > 2칸 차지)
+
+        grid-row
+        grid 아이템이 세로 방향으로 어디서 시작해서 어디까지 차지할지를 정하는 속성
+
+        grid-area
+        grid-area: header;
+        영역 이름을 지정(grid-template-areas와 세트)
+
+        justify-self
+        justify-self: center;
+        grid 아이템 한 개를 셀 안에서 가로 방향으로 어떻게 정렬할지 정하는 속성
+
+        align-self
+        gid 아이템 한 개를 셀 안에서 세로 방향으로 어떻게 정렬할지 정하는 속성
+
+        place-self
+        place-self: center;
+        grid 아이템 한 개의 정렬을 align-self + justify-self 정하는 속성
+
+        * 반응형 그리드
+        fr: 남는 공간을 비율로 나누는 단위
+            1fr 2fr;
+
+        repeat()
+        repeat(3, 1fr) -> 1fr 1fr 1fr과 동일
+        반복 정의
+
+        minmax()
+        트랙(열/행)의 크기를 최소 ~ 최대 범위로 지정하는 함수
+        minmax(200px, 1fr) -> 1열은 최소 200px, 공간이 남으면 최대 1fr까지 늘어남
+
+        auto-fit / auto-fill
+        repeat()에서 열(또는 행) 개수를 자동으로 만들 때 쓰는 키워드
+        repeat(auto-fit, minmax(200px, 1fr))
+        컨테이너 폭을 보고 minmax(200px, 1fr)짜리 열이 한 줄에 몇 개 들어갈 수 있는 지 계산, 그 개수만큼 열을 반복해서 생성
+        auto-fit: 남는 빈 칸이 생기면 그 칸을 없애서 아이템들이 더 넓게 늘어나게 함
+        auto-fill: 가능한 만큼 열(칸)을 끝까지 채워서 만들어 둠
+    -->
+
+    <div class="app">
+        <header>
+            헤어(header)
+        </header>
+        <nav>
+            네비게이션(nav)
+        </nav>
+        <aside>
+            <div class="profile">
+                프로필 영역<br>
+                김사과<br>
+                관리자
+            </div>
+            <p style="margin-top:12px;">
+                사이드 메뉴<br>
+                - 대시보드<br>
+                - 사용자 관리<br>
+                - 로그
+            </p>
+        </aside>
+
+        <div class="divider"></div>
+
+        <main>
+            <h2>메인 컨텐츠</h2>
+            <p style="margin-top: 10px;">
+                Gridbox를 사용해 고정값(px) 기반으로 구성한<br>
+                실무형 3단 레이아웃입니다.
+            </p>
+        </main>
+        <footer>
+            푸터(footer)
+        </footer>
+    </div>
+</body>
+</html>

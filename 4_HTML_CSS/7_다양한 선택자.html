@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다양한 선택자</title>
+    <style>
+        /* 1. 태그 선택자 */
+        h1 {
+            color: deepskyblue;
+            text-align: center;
+        }
+
+        /* 2. 클래스 선택자(.) */
+        .intro {
+            font-weight: bold;
+            color: deeppink;
+        }
+
+        /* 3. 아이디 선택자(#) */
+        #favorite-list {
+            background-color: ivory;
+            padding: 10px;
+        }
+
+        /* 4. 그룹 선택자(태그를 여러개 선택할 때 사용) */
+        p,
+        li {
+            font-size: 20px;
+        }
+
+        /* pc 기본 글꼴 사이즈는 16px */
+        /* 5. 클래스 선택자 */
+        .highlight {
+            color: gold;
+        }
+
+        .bluecolor {
+            font-style: italic;
+        }
+
+        /* 6. 의사 클래스 선택자 */
+        a:hover {
+            color: yellowgreen;
+            text-decoration: none;
+        }
+
+        /* 7. 속성 선택자 */
+        h1[title="제목"] {
+            background-color: ivory;
+        }
+
+        /* 8. 자식 선택자 */
+        ul#favorite-list>li {
+            list-style-type: square;
+        }
+
+        /* 9. 자손 선택자(자식을 포함함) */
+        ul#favorite-list p {
+            color: violet;
+            font-weight: bold;
+        }
+
+        /* 10. 형제 선택자 */
+        p.intro+p {
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 title="제목">선택자</h1>
+
+    <p class="intro">이 문단은 첫번째 문단입니다.</p>
+    <p>이 문단은 두번째 문단입니다.</p>
+
+    <!-- id가 같은 이름을 가지면 안된다(HTML에서 하나만 존재) -->
+    <ul id="favorite-list">
+        <li class="bluecolor">김사과</li>
+        <li class="bluecolor highlight">반하나</li>
+        <li class="bluecolor">오렌지</li>
+        <li class="bluecolor">
+            <p>이메론</p>
+        </li>
+        <p>출석부</p>
+    </ul>
+
+    <a href="https://www.naver.com">외부 링크</a>
+    <a href="#top">내부 링크</a>
+    <a href="./5_하이퍼링크.html" class="intro">하이퍼링크</a>
+</body>
+
+</html>

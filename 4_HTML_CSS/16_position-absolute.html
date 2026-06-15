@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position-absolute</title>
+    <style>
+        .parent {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            border: 2px solid #000;
+            margin: 50px;
+        }
+
+        .child {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        absolute
+        요소를 문서의 일반 흐름에서 완전히 제거한 뒤, 가장 가까운 position이 지정된 부모 요소(relative, absolute, fixed 중 하나)를 기준으로 위치를 잡는 방식. 만약 해당 부모가 없다면 브라우저 화면을 기준으로 배치되며, top/left/right/bottom 값을 이용해 정확한 위치를 지정할 수 있어 아이콘 겹치기나 특정 요소 위에 배치해야 할 UI를 만들 때 사용
+    -->
+    <div class="parent">
+        부모영역
+        <div class="child">
+            absolute 박스
+        </div>
+    </div>
+</body>
+
+</html>

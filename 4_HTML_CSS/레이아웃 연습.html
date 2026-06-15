@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃 연습</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 900px;
+            margin: 20px auto;
+            border: 2px solid #000;
+        }
+
+        header,
+        footer {
+            border: 2px solid #000;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        main{
+            margin: 10px;
+            padding: 20px;
+            border:  2px solid #000;
+        }
+        .left{
+            float: left;
+            border: 2px solid #000;
+            width: 15%;
+            height: 300px;
+            margin-right: 10px;
+            
+        }
+        .middle{
+            float: left;
+            border: 2px solid #000;
+            width: 60%;
+            height: 300px;
+            margin-right: 10px;
+            text-align: center;
+        }
+        .right{
+            float: left;
+            border: 2px solid #000;
+            width: 15%;
+            height: 300px;
+        }
+
+        .clear{
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            헤더 영역
+        </header>
+        <main>
+            <section class="left">
+                왼쪽 컨텐츠 영역
+            </section>
+            <article class="middle">
+                중간 컨텐츠 영역
+            </article>
+            <aside class="right">
+                오른쪽 컨텐츠 영역
+            </aside>
+            <div class="clear"></div>
+        </main>
+        <footer>
+            푸터 영역
+        </footer>
+    </div>
+</body>
+
+</html>

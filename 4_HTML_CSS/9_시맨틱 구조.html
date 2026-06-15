@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시맨틱 구조</title>
+    <style>
+        div {
+            width: 500px;
+            background-color: gold;
+        }
+
+        span {
+            font-weight: bold;
+            color: red;
+        }
+
+        header,
+        nav,
+        section,
+        article,
+        aside,
+        footer {
+            border: 1px solid #cccccc;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        header {
+            background-color: deepskyblue;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        <span> : HTML에서 특별한 의미나 레이아웃 기능 없이 텍스트의 일부분을 감싸는 인라인 컨테이너 태그 (인라인))
+        <div> : HTML에서 의미를 가지지 않는 블록 단위의 컨테이너 태그로, 여러 요소를 하나의 그룹으로 묶어 페이지의 구조를 나누거나 레이아웃을 구성할 때 사용 (블록)
+    -->
+    <div>
+        이것은 div 태그입니다.
+        하나의 블록 영역을 차지합니다.
+    </div>
+
+    <div>
+        이것은 div 태그입니다.
+        하나의 블록 영역을 차지합니다.
+        이 문장 안에서 <span> 이 부분만 span 태그</span>로 감쌌습니다.
+    </div>
+    <hr>
+
+    <!-- 
+        시멘틱 태그 : html에서 요소의 겉모양이 아니라 의미와 역할을 명확히 드러내는 태그로, 해당 영역이 어떤 목적을 가지는지 브라우저/검색엔진/접근성 도구가 이해할 수 있도록 도움
+        <header>, <nav>, <main>, <section>, <article>, <aside>, <footer> ... 
+        <header> : 페이지의 머리글 영역, 제목, 로고
+        <nav> : 메뉴, 링크 목록
+        <main> :페이지에서 가장 핵심이 되는 주요 내용
+        <section> : 주제별로 나눈 컨텐츠 영역
+        <article> : 게시글, 블로그처럼 독립적으로 의미를 가지는 컨텐츠
+        <aside> : 본문과 간접적 또는 관련없는 사이드 컨텐츠
+        <footer> : 저작권, 작성자 정보, 하단 정보 영역
+        ...
+    -->
+
+
+    <header>
+        <h1>나의 웹사이트</h1>
+        <p>사이트 제목/소개 영역</p>
+    </header>
+
+    <nav>
+        <p>메뉴 영역</p>
+        <a href="#">홈</a>
+        <a href="#">소개</a>
+        <a href="#">연락</a>
+    </nav>
+
+    <main>
+        <section>
+            <h2>주제별 구역</h2>
+            <p>이 섹션은 하나의 주제를 묶는 영역입니다.</p>
+        </section>
+
+        <article>
+            <h2>독립 컨텐츠</h2>
+            <p>게시글/뉴스처럼 단독으로 의미가 있는 컨텐츠입니다.</p>
+        </article>
+
+        <aside>
+            <h3>부가 정보</h3>
+            <p>본문과 간접적으로 관련된 사이드 내용입니다.</p>
+        </aside>
+
+        <footer>
+            <p>하단 정보(저작권, 연락처 등)</p>
+        </footer>
+    </main>
+</body>
+
+</html>

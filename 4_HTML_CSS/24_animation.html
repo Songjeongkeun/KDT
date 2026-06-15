@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation</title>
+    <style>
+        @font-face {
+            font-family: 'OngleipParkDahyeon';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2411-3@1.0/Ownglyph_ParkDaHyun.woff2') format('woff2');
+            font-weight: normal;
+            font-display: swap;
+        }
+
+        body {
+            font-family: OngleipParkDahyeon;
+        }
+        
+        @keyframes toastIn {
+            0% { transform: translateY(20px); opacity: 0;}
+            100% { transform: translateY(0); opacity: 1;}
+        }
+
+        .toast{
+            width: 360px;
+            border: 2px solid #000;
+            padding: 16px;
+            margin-bottom: 30px;
+            animation-name: toastIn;
+            animation-duration: 0.6s;
+            animation-timing-function: ease-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: forwards;
+            opacity: 0;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); } 
+        }
+
+        .spinner{
+            width: 46px;
+            height: 46px;
+            border: 6px solid #000;
+            border-top-color: transparent;
+            border-radius: 50%;
+            margin-bottom: 30px;
+            animation: spin 1s linear 0s infinite normal none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        } 
+
+        .badge{
+            display: inline-block;
+            border: 2px solid #000;
+            padding: 8px 12px;
+            margin-bottom: 30px; 
+            
+            animation: pulse 0.7s ease-in-out 0s infinite alternate none;
+        }
+
+        .puase-hint{
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .badge:hover{
+            animation-play-state: paused;
+        }
+
+        h2 {
+            margin: 20px 0 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- 
+        animation
+        @keyframes를 이용해 여러 단계의 스타일 변화를 정의하고 이를 자동으로 재생하는 기능으로, 사용자 상호작용이 없어도 시간의 흐름에 따라 요소가 움직이거나 변형되도록 만들 수 있음
+
+        @keyframes 애니메이션이름 {
+            단계{
+                스타일;
+            }   
+        }
+
+        에)
+        @keyframse fade {
+            form { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            25% { transform: translateY(-50); }
+            50% { transform: translateY(-10); }
+            75% { transform: translateY(20); }
+            100% { transform: translateY(0); }
+        }
+
+        animation-name
+        naimation-name : fade
+        적용할 @keyframes 이름을 지정
+
+        animation-duration
+        animation-duration: 2s;
+        애니메이션 한 번 실행되는 시간
+
+        animation-timing-function
+        animation-timing-function: ease-in-out
+        애니메이션 속도 변화 방식
+
+        animaition-delay
+        animaition-delay: 1s
+        애니메이션 시작 전 대기 시간
+
+        animation-iteration-count
+        animation-iteration-count: infinite;
+        반복 횟수 지정, 숫자 또는 infinite(무제한)
+
+        animation-direction
+        animation-direction: alternate;
+        재생 방향. forward(앞으로) / backword(뒤로) / alterante(앞으로 뒤로)
+
+        animation-fill-mode
+        animation-fill-mode: forwards;
+        시작/종료 후 스타일 유지 여부
+
+        animation-play-state
+        animation-play-state: paused;
+        애니메이션 재생/정지. play(진행), pause(멍춤)
+
+        animation: name duration timing-function delay iteration-count direction fill-mode;
+    -->
+
+    <h2>토스트(알림) 등장</h2>
+    <div class="toast">
+        저장되었습니다! (0.2초 후 부드럽게 등장)
+    </div>
+
+    <h2>로딩 스피너</h2>
+    <div class="spinner"></div>
+
+    <h3>강조 배지(펄스)</h3>
+    <div class="badge">HOT</div>
+    <div class="pause-hint">배지에 마우스를 올리면 애니메이션이 멈춥니다.</div>
+</body>
+
+</html>
