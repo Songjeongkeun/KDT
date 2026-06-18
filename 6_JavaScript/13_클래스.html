@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클래스</title>
+    <script>
+        /*
+            class 클래스명 {
+                constructor(매개변수1, 매개변수2 ...){
+                    속성 정의
+                }
+                메서드명(매개변수1, 매개변수2, ...){
+                    객체가 할 수 있는 동작 정의
+                }
+            }
+
+            클래스 상속
+            -다른 클래스의 속성과 메서드를 물려받을 수 있음
+                class 클래스명 extends 부모클래스명 {
+
+                }
+
+            정적 메서드
+            - 클래스 이름으로 직접 호출하는 메서드
+
+            클래스 필드
+            - constructor 없이 속성을 바로 정의 가능
+            - 클래스 레벨 속성, 비공개 속성 정의에 유리함
+
+            get/set
+            - get과 set은 같은 이름을 공유해야 함
+            - 내부에서 값을 저장할 땐 보통 _name처럼 언더스코어를 붙여서 구분
+            - get만 정의하면 읽기 전용 속성이 됨
+
+            private 필드
+            - 클래스 내부에서만 접근 가능한 비공개 속성
+            - #을 붙이면 반드시 동일한 클래스 안에서만 접근 가능
+        */
+    </script>
+</head>
+
+<body>
+    <h1>클래스</h1>
+    <script>
+        class Animal {
+            constructor(type) {
+                this.type = type
+            }
+            bark() {
+                console.log(`${this.type} 멍멍!`)
+            }
+            speack(){
+                console.log("동물이 소리를 냅니다.")
+            }
+        }
+
+        const dog = new Animal("강아지")
+        console.log(dog.type)
+        console.log(dog.bark())
+
+        class Dog extends Animal{
+            constructor(type, color){
+                super(type) // animal 의 constructor 호출
+                this.color = color
+            }
+            showInfo(){
+                console.log(`${this.type}는 ${this.color} 입니다`)
+            }
+        }
+        const rucy = new Dog("강아지", "흰색")
+        rucy.speack()
+        rucy.bark()
+        rucy.showInfo()
+    </script>
+    <hr>
+    <h1>정적 메서드</h1>
+    <script>
+        class MathTool{
+            static add(a, b){
+                return a + b
+            }
+        }
+        console.log(MathTool.add(3,4))
+    </script>
+    <hr>
+    <h1>클래스 필드</h1>
+    <script>
+        class Prodcut{
+            name = "상품명 없음"
+            pirce = 0
+
+            showInfo(){
+                console.log(`${this.name}의 가격은 ${this.price}원 입니다`)
+            }
+        }
+    </script>
+    <hr>
+    <h1>get / set</h1>
+    <script>
+        class User{
+            // private 변수는 클래스 필드에서만 선언할 수 있다.
+            // constructor 안에서 선언할 수 없다. constructor 에서 초기화를 해준다. 
+            #password = ""
+
+            constructor(name, password){
+                this._name = name
+                this.#password = password
+            }
+
+            get name(){
+                return this._name
+            }
+
+            set name(newName){
+                if(newName.length < 2){
+                    console.log("이름은 두 글자 이상이어야 합니다.")
+                }else{
+                    this._name = newName
+                }
+            }
+
+            checkPassword(input){
+                return this.#password === input
+            }
+        }
+
+        const user = new User("김사과", "1111")
+        console.log(user)
+        user.name = "반"
+        user.name = "반하나"
+        console.log(user.name)
+        console.log(user.checkPassword("1111"))
+        console.log(user.checkPassword("2222"))
+
+        // console.log(user.#password)
+    </script>
+
+    <hr>
+    <h1>Account 클래스</h1>
+    <script>
+        class Account{
+            static accountCount = 0
+            
+            #balance = 0
+
+            constructor(owner){
+                this.owner = owner
+                Account.accountCount++
+            }
+
+            get balance(){
+                return this.#balance
+            }
+
+            set balance(value){
+                console.log("직접 잔액을 설정할 수 없습니다.")
+            }
+
+            deposit(amount){
+                if(amount > 0){
+                    this.#balance += amount
+                    console.log(`${this.owner}님, ${amount}원 입금되었습니다.`)
+                }
+            }
+
+            withdraw(amount){
+                if(amount <= this.#balance){
+                    this.#balance -= amount
+                    console.log(`${this.owner}님, ${amount}원 출급되었습니다.`)
+                }else{
+                    console.log("잔액이 부족합니다.")
+                }
+            }
+
+            static getAccountCount(){
+                return `총 계좌 수: ${Account.accountCount}`
+            }
+        }
+
+        const user1 = new Account("김사과")
+        user1.deposit(1000)
+        console.log(user1.balance)
+
+        user1.withdraw(300)
+
+        const user2 = new Account("반하나")
+        user2.deposit(6000)
+
+        console.log(Account.getAccountCount())
+    </script>
+</body>
+
+</html>

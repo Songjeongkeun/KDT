@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수</title>
+    <script>
+        /*
+            변수
+            let,const, var
+
+            변수 선언
+            let age
+            let name
+
+            값 할당
+            age = 20
+            name = "김사과"
+
+            변수 선언과 할당
+            let age = 20
+            let name = "김사과"
+
+            변수 이름 작성 규칙
+            - 문자, 숫자, _, $ 사용 가능
+            - 숫자로 시작이 불가
+            - 공백 사용 불가
+            - 예약어 사용 불가
+
+            var와 let/const의 차이
+            var와 let/const의 가장 큰 차이는 변수의 유효 범위(scope)와 예측 가능성에 있습니다. var는 함수 단위 스코프를 가지며 선언 전에 사용해도 동작하는 호이스팅 특성 때문에 의도치 않은 오류를 만들기 쉽고, 중복 선언도 허용됩니다. 반면 let과 const는 블록 단위 스코프를 가져 {} 안에서만 유효하며 중복 선언이 불가능해 코드의 안정성이 높습니다. 또한 const는 한 번 할당한 값을 변경할 수 없어 의도를 명확히 표현할 수 있어, 현대 자바스크립트에서는 var 대신 let과 const 사용이 권장됩니다.
+        */
+        let age = 20
+        let name = "김사과"
+        const PI = 3.14
+
+        console.log(age)
+        console.log(name)
+        console.log(PI)
+
+        age = 25
+        name = "반하나"
+        // PI = 3.14159
+
+        console.log(age)
+        console.log(name)
+
+        // let age = 30 : 한번 선언된 변수는 다시 선언할 수 없다.
+        var score = 90
+        console.log("점수: ", score)
+        var score = 100
+        console.log("점수: ", score)
+        socre = 80
+        console.log("점수: ", socre)
+        // 선언하지 않으면 파이썬처럼 자동으로 변수 설정 (default: var) 
+        // 명확한 코드를 위해서 var 대신에 let 을 써주는게 좋다.
+        message = "안녕하세요"
+        console.log(message)
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

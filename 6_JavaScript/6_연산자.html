@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연산자</title>
+    <script>
+        /*
+            연산자
+
+            1. 산술 연산자
+                +, -, *, /, %, **
+
+            2. 대입 연산자
+                =, +=, -=, *=, /=, %=
+            
+            3. 비교 연산자
+                ==, !=, >, <, >=, <=, 
+                
+                == : 값만 비교  
+                === : 값 + 타입까지 비교
+                ex)
+                    10 == "10" -> true
+                    10 === "10" -> false
+
+                != : 값만 비교
+                !=== : 값 + 타입 비교 (또는 비교), 잘 사용하지 않음
+                ex)
+                    10 != "10" -> false
+                    10 !== "10" -> true !(a === b)
+                
+            4. 논리 연산자 
+                && : AND
+                || : OR
+                ! : NOT
+
+            5. 증감 연산자
+                ++ : 값을 1 증가
+                -- : 값을 1 감소
+
+            6. 문자열 연산자
+                + : 문자열을 연결할 때 사용
+            
+            7. 조건(삼항) 연산자
+                조건에 따라 다른 값을 선택
+                조건 ? 값1 : 값2
+
+            8. 타입 관련 연산자
+                typeof : 변수의 타입을 반환 
+                instanceof : 변수가 특정 객체의 타입인지 확인
+
+            9. 기타 연산자
+                , : 여러 표현식 나열
+                ?. : 옵셔널 체이닝(null인지 아닌지 체크)
+                ?? : null 병합 연산자(null일 경우 특정값을 반환)
+
+                
+        */
+    </script>
+</head>
+
+<body>
+    <script>
+        // 비교 연산자
+        console.log(5 == "5")
+        console.log(5 === "5")
+
+        // 증감 연산자
+        let count = 1
+        count++
+        console.log(count)
+        count--
+        console.log(count)
+        let result = ++count
+        console.log(result)
+        console.log(count)
+        result = count++
+        console.log(result)
+        console.log(count) // 연산자 우선순위 : "전치 ++" > "=" > "후치 ++"
+
+        // 조건(삼항) 연산자
+        let score = 85
+        result = score >= 60 ? "합격" : "불합격"
+        console.log(result)
+
+        // 타입 관련 연산자
+        let num = 10
+        let arr = []
+        console.log(typeof num)
+        console.log(arr instanceof Array)
+
+        // 기타 연산자
+        let x = (1, 2, 3, 10)
+        console.log(x) // x 안에 있는 값중 마지막에 있는 값을 반환
+        let user = null
+        console.log(user?.name) // null 일 경우 undefined 반환
+        let value = null
+        let resultValue = value ?? "기본값"
+        console.log(resultValue)
+    </script>
+</body>
+
+</html>

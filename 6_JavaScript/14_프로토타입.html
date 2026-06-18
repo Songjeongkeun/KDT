@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로토타입</title>
+    <script>
+        /*
+            프로토타입
+            - 자바스크립트에서 객체가 공통된 속성과 메서드를 공유하도록 해주는 메커니즘
+            - 모든 객체는 내부에 prototype이라는 숨겨진 연결을 가지며, 자신에게 없는 속성이나 메서드를 요청받으면 이 연결을 따라 프로토타입 객체에서 찾아옴
+            - 여러 객체가 동일한 메서드를 각각 따로 가지지 않고, 하나의 원본을 공유할 수 있어 메모리를 절약하고 구조적인 코드 작성이 가능
+
+            Object 객체
+            - 자바스크립트의 내장 객체인 Object는 모든 객체의 최상위 부모(프로토타입의 기반)이자, 객체를 생성하고 조작하기 위핸 기본 도구
+            - Object는 객체를 만들 수 있는 생성자이면서, 객체의 속성을 다루기 위한 다양한 메소드를 제공
+            - 모든 객체는 Object에서 출발하며, 공통 기능은 Object.prototype에 정의
+
+            Object의 주요 메서드
+            - Object.keys(obj) : 객체의 모든 키(속성 이름)를 배열로 반환
+                const user = { name: "김사과", age: 20}
+                console.log(Object.keys(user)) // ['name', 'age']
+            - Object.values(obj): 객체의 모든 값(속성 값)을 배열로 반환
+                console.log(Object.values(user)) // ['김사과', '20']
+            - Object.entries(obj) : 객체의 키와 값 쌍을 [key, value] 형태의 배열로 반환
+                console.log(Object.entries(user)) // [['name', '김사과'], ['age', 20]]
+            - Object.assign(obj) : 객체를 복사하거나 병합할 때 사용
+            
+            - Object.hasOwn(obj, key): 객체가 특정 속성을 직접 가지고 있는지 확인
+                console.log(Object.hasOwn(user, "name")) // true
+                console.log(Object.hasOwn(user, "job")) // false
+            - Object.freeze(obj) : 객체를 동결시켜 속성을 변경/추가/삭제할 수 없게 만듦
+                const config = { debug: true }
+                Object.freeze(config)
+                config.debug = false
+                console.log(config.debug) // true (변경 안됨)
+            
+        */
+    </script>
+</head>
+
+<body>
+    <script>
+        function Person(name) {
+            this.name = name
+        }
+
+        Person.prototype.study = function(){
+            console.log(`${this.name}이 열심히 공부합니다.`)
+        }
+
+        const p1 = new Person("김사과")
+        const p2 = new Person("반하나")
+        p1.sayHello = function () {
+            console.log(`안녕하세요. 저는 ${this.name}입니다.`)
+        }
+        p1.sayHello()
+        p1.study()
+        p2.study()
+        // p2.sayHello()
+        /*
+            - Person 생성자로 만든 객체 p1, p2는 study()라는 메서드를 직접 가지고 있지 않았음
+            - Person.prototype이라는 공용 객체에 저장된 메서드를 참조해서 사용
+                p1 -> Person.prototype -> Object.prototype -> null (프로토타입 체인)
+                
+        */
+    </script>
+</body>
+
+</html>
+

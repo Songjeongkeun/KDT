@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체 기초</title>
+    <script>
+        /*
+            1. 절차 지행 프로그래밍
+                - 코드를 순서대로 실행되는 절차로 구성하는 방식
+                const names = ['김사과', '반하나', '오렌지', '이메론']
+                for(let i = 0; i < names.length; i++){
+                    if(names[i].startsWith("김")){
+                        console.log("안녕하세요, ", names[i] + "님!")
+                    }
+                }
+            
+            2. 객체 지향 프로그래밍
+                - 프로그램을 구성할 때 현실 세계의 사물들을 객체로 모델링하여, 객체 간의 상호작용을 통해 문제를 해결하는 방식
+                // 객체는 literal 방식으로 {} 로 선언
+                const greeter = {
+                    names: ['김사과', '반하나', '오렌지', '이메론']
+                    // 메서드 함수는 익명함수로 선언해준다.
+                    greetKim: function(){ 
+                        for(let i = 0; i < names.length; i++){
+                            if(names[i].startsWith("김")){
+                                console.log("안녕하세요, ", names[i] + "님!")
+                            }
+                        }
+                    }
+                }
+                greeter.greetKim()
+
+            3. 함수형 프로그래밍
+                - 함수 자체를 중심에 두는 프로그래밍 패러다임
+                - 데이터를 변경하지 않고, 순수 함수를 조합하여 문제를 해결
+                const names = ['김사과', '반하나', '오렌지', '이메론']
+                names
+                    .filter(name => name.startsWith("김"))
+                    .forEach(name => console.log("안녕하세요, " + name + "님!"))
+
+            객체
+            - 하나의 값에 여러 데이터를 담을 수 있는 자료형
+            - 속성(프로퍼티), 동작을 함께표현할 수 있는 구조
+            - 키-값 쌍의 형태로 데이터를 저장
+            
+            1) 객체 리터럴
+                - 중괄호 {} 안에 직접 속성과 메서드를 정의
+
+            2) new Object() 생성자 사용
+                - 객체를 빈 상태로 만들고, 나중에 속성 추가
+
+            3) 생성자 함수 사용
+                - 객체를 여러 개 찍어낼 수 있는 템플릿 역할
+                - new 키워드와 함께 사용
+
+            4) 클래스(Class, ES6)
+                - 구조가 명확하고 객체지향 언어와 유사
+            
+            객체
+            const obj1 = { name: "김사과" }
+            const obj2 = obj1 // 메모리 주소 저장
+            obj2.name = "반하나"
+            console.log(obj1.name)
+
+            1) 얕은 복사
+            객체의 1단계 속성만 복사하고, 속성 값이 또 다른 객체나 배열이면 참조만 복사
+
+            2) 깊은 복사
+            객체 내부의 모든 중첩된 값들까지 복사하는 방법. 즉, 완전히 새로운 객체를 만드는 것
+
+            스프레드 문법
+            - 점 3개를 사용해서 배열이나 객체의 값을 펼쳐서 복사하거나 전달할 수 있는 문법
+            - 배열이나 객체 안의 요소들을 하나하나 꺼내서 다른 배열, 객체, 함수등으로 옮겨줄 수 있음
+                const fruits = ['사과', '바나나']
+                const newFruits = [...fruits, "포도"]
+                console.log(newFruits) // ['사과', '바나나', '포도']
+
+                const arr1 = [1, 2, 3]
+                const arr2 = [...arr1] // 새 배열 생성
+
+                const a = [1, 2]
+                const b = [3, 4]
+                const result = [...a, ...b] // [1, 2, 3, 4]
+        */
+    </script>
+</head>
+
+<body>
+    <h1>객체 리터럴</h1>
+    <script>
+        const person1 = {
+            name: "김사과",
+            age: 20,
+            greet: function () {
+                console.log("안녕하세요, 저는 " + this.name + "입니다.")
+            }
+        }
+        person1.greet()
+    </script>
+    <hr>
+    <h1>new Object()</h1>
+    <script>
+        const person2 = new Object()
+        person2.name = "김사과"
+        person2.age = 20
+        person2.greet = function () {
+            console.log("안녕하세요, 저는 " + this.name + "입니다.")
+        }
+        person2.greet()
+    </script>
+    <hr>
+    <h1>생성자 함수</h1>
+    <script>
+        function Person(name, age) {
+            this.name = name
+            this.age = age
+            this.greet = function () {
+                console.log("안녕하세요, 저는 " + this.name + "입니다.")
+            }
+        }
+
+        const person3 = new Person("김사괴", 20)
+        person3.greet()
+    </script>
+
+    <hr>
+    <h1>클래스</h1>
+    <script>
+        class Person2 {
+            constructor(name, age) {
+                this.name = name
+                this.age = age
+            }
+            greet() {
+                console.log("안녕하세요, 저는 " + this.name + "입니다.")
+            }
+        }
+        const person4 = new Person("김사과", 20)
+        person4.greet()
+
+    </script>
+    <hr>
+    <h1>객체 복사 - 얕은 복사</h1>
+    <script>
+        const obj1 = { name: "김사과", age: 20 }
+        const obj2 = Object.assign({}, obj1)
+        console.log(obj2)
+        obj2.name = "오렌지"
+        console.log(obj1)
+
+        const obj3 = { ...obj1 } // 스프레드 문법
+        obj3.age = 30
+        console.log(obj3)
+        console.log(obj1)
+
+        // 얕은 복사
+        // address 는 객체이기 때문에, obj4와 obj5가 같은 주소를 공유
+        const obj4 = { name: "김사괴", age: 20, address: { city: "서울" } }
+        const obj5 = { ...obj4 }
+        obj5.address.city = "부산"
+        console.log(obj5)
+        console.log(obj4)
+
+    </script>
+    <hr>
+    <h1>스프레드 문법</h1>
+    <script>
+        function add(x, y, z) {
+            return x + y + z
+        }
+
+        const nums = [1, 2, 3]
+        console.log(add(...nums))
+
+        const a = { name: "김사과" }
+        const b = { age: 20 }
+        const merged = { ...a, ...b }
+        console.log(merged)
+
+        const numbers = [1, 2, 3, 4, 5]
+        const [first, second, ...rest] = numbers
+        console.log(first)
+        console.log(second)
+        console.log(rest)
+
+        const user = {
+            name: "김사과",
+            age: 20,
+            city: "서울"
+        }
+
+        const { name, ...rest2 } = user
+        console.log(name)
+        console.log(rest2)
+
+        function display({ name, age, address, job }) {
+            console.log(name, age, address, job)
+        }
+
+        const apple = { name: "김사과", age: 20, address: { si: "서울시", gu: "서초구", dong: "양재동" } }
+        console.log(apple)
+        const new_apple = { ...apple, job: "프로그래머" }
+        console.log(new_apple)
+        display(new_apple)
+
+        // new_apple에 pet 속성이 없으면 pet = "루시"를  기본값으로 사용
+        const { pet = "루시" } = new_apple
+        // new_apple안에 들어있는 job 속성 값을 hobby에 저장
+        // 원래 이름은 job, 내가 사용하고 싶은 이름은 hobby
+        const { job: hobby } = new_apple
+        console.log(new_apple)
+        console.log(hobby)
+
+        const component = {
+            name: "Button",
+            styles: {
+                size: 20,
+                color: 'black'
+            }
+        }
+
+        function changeColor({ styles: { color } }){
+            console.log(color)
+        }
+
+        changeColor(component)
+    </script>
+</body>
+
+</html>

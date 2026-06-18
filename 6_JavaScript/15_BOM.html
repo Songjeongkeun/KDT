@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM</title>
+    <script>
+        /*
+            BOM(Browser Object Model)
+            자바스크립트가 브러우저 자체를 제어하고 정보를 얻기 위해 사용하는 객체 모델
+
+            API(Application Programming Interface)
+            서로 다른 프로그램이나 시스템이 데이터를 주고받고 기능을 사용할 수 있도록 연결해주는 중간 통로
+
+            1. window 객체
+            - 자바스크립트에서 브라우저 창을 대표하는 최상위 객체로, 전역 범위에서 정의된 변수나 함수, 타이머, 팝업, 브라우저 정보 등 대부분의 기능을 포함하고 있음
+            - HTML 페이즈를 로드하면 브라우저는 자동으로 window 객체를 생성하며, 자바스크립트 코드에서 명시적으로 window를 쓰지 않아도 사용할 수 있음
+
+            2. location 객체
+            - 자바스크립트에서 현재 웹 페이즈의 URL(주소) 정보를 다루고 제어할 수 있게 해주는 window 객체의 하위 객체
+
+            3. history 객체
+            - 브라우저의 방문 기록을 제어할 수 있는 객체로, 사용자가 이전에 방문했던 페이지로 이동하거나 앞으로 다시 이동할 수 있는 기능을 제공
+
+            4. navigator 객체
+            - 브라우저에 대한 정보를 제공하는 객체로, 사용자의 브라우저 종류, 버전, 운영체제, 언어 설정, 온라인 여부 등 다양한 환경 정보를 확인할 수 있도록 해줌
+            - getlocation: 사용자의 위치 정보를 가져오기 위한 API로, GPS, WIFI, IP 주소 등을 이용해 현재 위치를 알아냄. 사용자의 명시적인 동의가 있어야 작동함
+            - 
+        */
+    </script>
+</head>
+
+<body>
+    <button onclick="reloadPage()">페이지 새로고침</button>
+    <button onclick="goToNaver()">네이버로 이동</button>
+    <button onclick="showLocationInfo()">주소 정보 보기</button>
+    <hr>
+    <button onclick="goBack()">뒤로 가기</button>
+    <button onclick="goForward()">앞으로 가기</button>
+    <button onclick="showHistoryLength()">방문 기록 개수</button>
+    <hr>
+    <button onclick="showNavigatorInfo()">브라우저 정보 보기</button>
+    <hr>
+    <p id="locationInfo">위치 정보가 여기에 표시됩니다.</p>
+    <button onclick="getLocation()">위치 가져오기</button>
+    <script>
+        function showWindowInfo() {
+            // window(객체).객체.property
+            console.log("브라우저 이름: ", window.navigator.appName)        // Netscape
+            console.log("브라우저 엔진: ", window.navigator.product)        // Gecko
+            console.log("사용자 에이전트: ", window.navigator.userAgent)     // Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36
+
+            console.log("현재 페이지 URL: ", window.location.href)
+            console.log("창 너비: ", window.innerWidth)         // window 객체 안에 있는 property
+            console.log("창 높이: ", window.innerHeight)
+
+        }
+
+
+        /*
+           window.setTimeout(function(){
+              alert("3초가 지났습니다.") // window 생략 가능
+           }, 3000)
+        */
+
+        function showLocationInfo() {
+            console.log("전체 URL: ", location.href)
+            console.log("프로토콜: ", location.protocol)
+            console.log("호스트: ", location.host)
+            console.log("호스트명: ", location.hostname)
+            console.log("포트번호: ", location.port)
+            console.log("경로: ", location.pathname)
+            console.log("쿼리 문자열: ", location.search)
+        }
+
+        function reloadPage() {
+            location.reload()
+        }
+
+        function goToNaver() {
+            location.href = "https://www.naver.com"
+        }
+
+        function goBack() {
+            history.back()
+        }
+
+        function goForward() {
+            history.forward()
+        }
+
+        function showHistoryLength() {
+            alert("방문 기록수: " + history.length)
+        }
+
+        function showNavigatorInfo() {
+            console.log("브라우저 이름(userAgent)", navigator.userAgent)
+            console.log("운영체제: ", navigator.platform)
+            console.log("언어설정: ", navigator.language)
+            console.log("쿠키 사용 가능 여부: ", navigator.cookieEnabled)
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError)
+            }else{
+                document.getElementById("locationInfo").innerText = "이 브라우저는 위치 정보를 지원하지 않습니다." // document 객체 : 브라우저 화면을 관리하는 객체
+            }
+        }
+
+        function showPosition(position){
+            const latitude = position.coords.latitude
+            const longitude = position.coords.longitude
+            document.getElementById("locationInfo").innerText = `위도:${latitude}, 경도:${longitude}`
+        }
+
+        function showError(error){
+            switch(error.code){
+                case error.PERMISSION_DENIED:
+                    alert("사용자가 위치 정보 제공을 거부했습니다.")
+                    break;
+                case error.POSITION_UNAVAIVABLE:
+                    alert("위치 정보를 사용할 수 없습니다.")
+                    break;
+                case error.TIMEOUT:
+                    alert("위치 정보를 가져오는 데 시간이 초과되었습니다.")
+                    break;
+                default:
+                    alert("알 수 ㅇ벗는 오류가 발생했습니다.")
+            }
+        }
+
+        // showWindowInfo()
+        // showLocationInfo()
+
+        // 쿼리 문자열은 URL에서 물음표( ? ) 뒤에 붙어 키=값 쌍으로 데이터를 전달하는 방식
+    </script>
+</body>
+
+</html>
