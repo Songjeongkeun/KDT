@@ -1,4 +1,5 @@
 # models.py 
+# 데이터를 담는 클래스 파일
 
 class Subject:
     def __init__(self, subject_name, description="", subject_id = None, created_at = None):

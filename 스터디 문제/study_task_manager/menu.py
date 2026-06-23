@@ -101,17 +101,20 @@ class Menu:
                         
                     elif sub_menu == 3:
                         # 조건별 과제 조회
-                        self.service.filter_taskes()
+                        self.service.filter_tasks()
                         
                     elif sub_menu == 4:
                         # 과제 검색
-                        pass
+                        self.service.search_tasks()
+                        
                     elif sub_menu == 5:
+                        self.service.update_task()
                         # 과제 수정
-                        pass
+                
                     elif sub_menu == 6:
                         # 과제 완료 처리
-                        pass
+                        self.service.complete_task()
+                        
                     elif sub_menu == 7:
                         # 과제 삭제
                         pass

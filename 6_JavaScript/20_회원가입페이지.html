@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 가입</title>
+    <script src="./js/regist.js"></script>
+    <script src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    
+</head>
+
+<body>
+    <h2>회원 가입</h2>
+
+    <form action="/regist" method="post" onsubmit="return sendit()">
+        <input type="hidden" name="ssncheck" id="ssncheck" value="n">
+        <p>아이디: <input type="text" name="userid" id="userid" maxlength="20" placeholder="아이디를 입력하세요."></p>
+        <p>비밀반호: <input type="password" name="userpw" id="userpw" maxlength="20" placeholder="비밀번호를 입력하세요."></p>
+        <p>비밀번호 확인: <input type="password" name="userpw_re" id="userpw_re" maxlength="20"
+                placeholder="비밀번호를 다시 한번 입력하세요."></p>
+        <p>이름: <input type="text" name="name" id="name" maxlength="10" placeholder="이름을 입력하세요."></p>
+        <p>휴대폰번호: <input type="text" name="hp" id="hp" maxlength="20" placeholder="휴대폰 번호를 입력하세요 (- 포합)"></p>
+        <p>이메일: <input type="email" name="email" id="email" maxlength="50" placeholder="이메일을 입력하세요."></p>
+        <P>주민등록번호: <input type="text" name="ssn1" id="ssn1" maxlength="6" placeholder="주민번호 앞자리" class="ssn"> - <input
+                type="password" name="ssn2" id="ssn2" maxlength="7" placeholder="주민번호 뒷자리" class="ssn"><button type="button" onclick="return checkSsn()">인증</button></P>
+        <p>우편번호: <input type="text" name="zipcode" id="sample6_postcode" maxlength="5" placeholder="우편번호를 입력하세요."> <button
+                type="button" onclick="sample6_execDaumPostcode()">검색</button></p>
+        <p>주소: <input type="text" name="address1" id="sample6_address" placeholder="주소를 입력하세요"></p>
+        <p>상제 주소: <input type="text" name="address2" id="sample6_detailAddress" placeholder="상세 주소를 입력하세요"></p>
+        <p>참고 항목: <input type="text" name="address3" id="sample6_extraAddress" placeholder="참고 항목을 입력하세요"></p>
+
+        <p><button type="submit">가입완료</button> <button type="reset">다시작성</button></p>
+        <!-- button type -> 3가지 : button ,reset, submit -->
+    </form>
+</body>
+
+</html>

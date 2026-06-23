@@ -73,4 +73,4 @@ CREATE TABLE task_memos (
 
 SELECT * FROM subjects;
 
-SELECT count(*) FROM tasks WHERE subject_id = 1;
+SELECT COUNT(*) FROM tasks WHERE subject_id = 1;
