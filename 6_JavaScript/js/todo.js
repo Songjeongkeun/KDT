@@ -75,6 +75,7 @@ addBtn.addEventListener("click", addTodo)
 
 todoInput.addEventListener("keydown", (e) => {
     if(e.key === "Enter") addTodo()
+    if (e.isComposing) return;
 })
 
 render()

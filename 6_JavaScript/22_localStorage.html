@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localStorage</title>
+    <script>
+        /*
+            localStorage
+                - 브라우저가 제공하는 웹 스토리지 기능 중 하나로, 자바스크립트를 통해 키/값 형태의 데이터를 브라우저에 영구적으로 지정할 수 있는 저장소
+                - 브라우저별로 약 5MB 내외 저장 제한이 있음
+                - 문자열만 저장 가능
+                - 같은 도메인에서만 접근 가능
+                - 민간한 정보(비밀번호, 토큰 등)는 저장하면 안됨 
+                
+                데이터 저장
+                localStorage.setItem("키", "값")
+
+                데이터 불러오기
+                const value = localStorage.getItem("키")
+
+                데이터 삭제/모든 데이터 삭제
+                localStorage.removeItem("키")
+                localStorage.clear()
+        */
+    </script>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="saveUser()">사용자 지정</button>
+    <button onclick="loadUser()">사용자 불러오기</button>
+    <button id="theme-toggle">테마 변경</button>
+
+    <div id="info" style="margin-top: 10px;"></div>
+
+    <script>
+        function saveUser() {
+            const user = { name: "김사과", age: 20, job: "개발자" }
+
+            locatStorage.setItem("user", JSON.stringify(user))
+        }
+
+        function loadUser() {
+            const data = localStorage.getItem("user")
+            if (data) {
+                const user = JSON.parse(data)
+                document.getElementById("info").innerText = `이름: ${user.name}, 나이: ${user.age}, 작업: ${user.job}`
+            }
+        }
+
+    </script>
+</body>
+
+</html>
