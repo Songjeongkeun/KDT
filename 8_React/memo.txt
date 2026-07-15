@@ -1,0 +1,102 @@
+리액트
+- UI를 구성하기 위한 자바스크립트 라이브러리
+- 컴포넌트를 기반으로 화면을 효율적으로 재사용/관리할 수 있도록 설계된 프론트앤드 기술
+- 전통적인 DOM을 직접 조작하는 대신, 가상 DOM(Virtual DOM)을 통해 변경된 부분만 최소 비용으로 업데이트 함
+- SPA 개발을 넘어 node.js 같은 프레임워크와 함께 SSR/CSR/SSG/ISR 등 다양한 렌더링 전략을 지원하는 기술
+
+SPA(Single Page Application)
+- 하나의 HTML 페이지에서 모든 화면 전환을 처리하는 웹 애플리케이션 방식
+- 기본 MPA(Multi Page Application)처럼 페이지 이동 때마다 서버에서 HTML을 재요청하지 않고, 처음 한 번만 HTML, CSS, JS를 받아오고 이후 화면 전환은 자바스크립트가 브라우저 내부에서 렌더링을 변경해 처리
+- 페이지 이동처럼 보이더라고 실제는 페이지가 다시 로드되지 않는 구조
+
+리액트의 동작 원리
+- 리액트는 UI를 컴포넌트 단위로 구성함. 화면을 버튼, 카드, 리스트처럼 작은 단위의 컴포넌트로 쪼개어 만들고, 각 컴포넌트가 자신의 상태와 렌더링 방식을 스스로 관리하도록 함으로 재사용성과 유지보수성을 극대화
+- 상태가 바뀌면 새로운 Virtual DOM을 만들고, 이전 Virtual DOM과 비교 후, 이전 렌더링 때 만들어 두었던 Virtual DOM과 어디가 어떻게 달라졌는지 계산
+- 변경된 부부만 실제 DOM에 반영하여 렌더링 비용을 최소화
+- HOOK을 통해 상태 관리와 렌더링 사이클을 제어. 함수형 컴퍼너트에서 상태를 저장하고, 렌더링 시점 전/후에 실행할 로직을 등록할 수 있게 해주며 언제 어떤 조건에서 다시 렌더링해야 하는지 세밀하게 제어
+
+
+Vite
+차세대 프론트앤드 개발을 위한 초고속 빌드 도구로 기존 번들(Webpack 등)보다 훨씬 빠르게 개발 서버를 실행하고 파일 변경을 처리할 수 있는 도구
+
+    npm create vite@latest 1_react -- --template react
+
+
+useState
+- 컴포넌트 안에서 값을 기억하고, 그 값이 바뀌면 화면을 자동으로 다시 그려주는 React의 상태관리 함수(Hook)
+    const [state값, state 바꾸는 함수] = useState(초기값)
+
+useRef
+- 리액트 컴포넌트 안에서 값을 기억해두는 상자
+- 값을 바꿔도 리랜더링이 일어나지 않으며, 컴포넌트가 다시 랜더링되어도 상자의 값을 계속 재사용할 수 있음
+    const idInput = useRef()
+    console.log(ref.current)
+
+useEffect
+- 추가 작업 또는 외부 시스템과의 동기화 작업을 할 때 사용하는 상태 관리 함수
+
+    useEffect(() => {
+        실행할 작업
+        return() => {
+            바뀌기전 데이터를 반환
+        }
+    }, [의존성])
+
+    1. 컴포넌트 함수 실행
+        - 컴포넌트가 처음 화면에 나타날 때(초기 mount)
+    2. jsx 생성
+    3. useEffect 실행
+        - user 설정: user 값
+    4. user 값이 변경되었을 때(useEffect 재실행)
+    5. 컴포넌트가 화면에서 완전히 사라질 때(unmount, useEffect 재실행)
+
+    초기 랜더링: user 설정: A
+    user 변경: user 바뀌기전: A, user 설정: B
+    user 다시 변경: user 바뀌기전: B, user 설정: C
+    컴포넌트 제거: user 바뀌기전: C
+
+
+    React Developer Tools
+- React를 사용하는지 확인할 수 있는 확장 프로그램
+- 컴포넌트 트리 보기
+- Props 확인
+- State 확인
+- Hooks 확인
+- Context 확인
+- 컴포넌트가 다시 렌더링되는 이유 분석
+
+          Elements 탭 vs Components 탭
+확인   | 실제 HTML DOM     React 컴포넌트
+주요내용| CSS, HtmL …    Props,State, Hooks …
+목적   | 화면/스타일 분석     React 데이터 흐름 분석
+
+useReducer
+상태 변경 종류가 여러 개일 때 상태 변경 규칙을 하나의 함수로 관리하는 Hook
+    const [state, dispatch] = useReducer(reducer, initialState)
+    dispatch: 상태 변경 요청을 보내는 함수
+    reducer: 상태를 어떤 방식으로 변경할지 정의한 함수
+    initialState: 처음 사용할 초기 상태가
+
+useReducer의 전체 흐름
+    사용자가 버튼 클릭 -> dispatch 실행 -> action 객체 전달 -> reducer 실행 -> reducer가 새로운 상태 반환 -> React 상태 저장 -> 컴포넌트가 재랜더링
+
+useCallback
+함수 자체를 기억하는 Hook. React 함수형 컴포넌트는 랜더링될 때마다 함수 전체가 다시 실행됨.
+따라서 컴포넌트 내부의 함수도 다시 만들어짐
+
+    function App(){
+        const handleAdd = () => {
+            console.log("추가")
+        }
+    }// App이 다시 랜더링 되면 새로운 handleAdd 함수 객체가 만들어짐
+
+    이전 handleAdd !== 새로운 handleAdd
+
+useMemo
+값을 감싸는 Hook
+- 계산 비용이 실제로 크고, 랜더링이 자주 발생하는 곳에 사용
+- 함수가 아니라 계산된 결과값을 기억
+    const 기억된값 = useMemo(() => {
+        return 계산결과
+    }, [의존성])
+- [의존성]이 변경될 때 새로 계산, 의존성이 바뀌지 않다면 이전 결과를 기억해서 리턴
