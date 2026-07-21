@@ -100,3 +100,46 @@ useMemo
         return 계산결과
     }, [의존성])
 - [의존성]이 변경될 때 새로 계산, 의존성이 바뀌지 않다면 이전 결과를 기억해서 리턴
+
+createContext()
+- 여러 컴포넌트가 함께 사용할 데이터를 저장할 공간(Context)을 만드는 함수
+- Context가 없다면 부모가 자식에게 계속 props를 전달해야 함
+- Provider: 데이터를 넣는 역할
+- useContext: 데이터를 꺼낼 때 쓰는 함수
+
+createBrowserRouter()
+- URL과 화면 컴포넌트의 연결 규칙을 만드는 함수
+
+    1. 라우팅 규칙 만듬
+    const router = createBrowserRouter([
+        {
+            path: "/",
+            element: <Home/>
+        },
+        {
+            path: "videos",
+            element: <Videos/>s
+        }
+    ])
+
+    2. 라우팅 규칙을 React 애플리케이션에 적용
+        <RouterProvider router={router}/>
+
+Tailwind 설치
+-Tailwind 와 Vite 플러그인을 설치   
+    npm i tailwindcss @tailwindcss/vite
+- vite.config.js 수정
+    import { defineConfig } from 'vite'
+    import react from '@vitejs/plugin-react'
+    import tailwindcss from "@tailwindcss/vite"
+
+    // https://vite.dev/config/
+    export default defineConfig({
+    plugins: [react(), tailwindcss()],
+    })
+- index.css 수정
+    모두 지우고 @import "tailwindcss" 추가
+---------------------------------------------------------
+
+react-icons 라이브러리
+    npm i react-icons
