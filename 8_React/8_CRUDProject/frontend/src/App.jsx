@@ -121,7 +121,7 @@ export default function App() {
         </div>
         <div>
           <label htmlFor="price">가격</label>
-          <input id="price" type="nubmer" min="0" placeholder="가격을 입력하세요." vlaue={price} onChange={(e) => setPrice(e.target.value)} />
+          <input id="price" type="number" min="0" placeholder="가격을 입력하세요." value={price} onChange={(e) => setPrice(e.target.value)} />
         </div>
         <div className="button-group">
           <button type="submit">

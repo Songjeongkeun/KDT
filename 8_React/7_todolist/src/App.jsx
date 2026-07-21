@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Header from "./components/header/Header"
-import TodoList from './components/todolist/Todolist'
+import TodoList from './components/todolist/TodoList'
 import { DarkModeProvider } from './context/DarkmodeContext'
 
 const filters = ['all', 'active', 'completed']
