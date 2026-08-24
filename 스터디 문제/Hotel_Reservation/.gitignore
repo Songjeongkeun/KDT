@@ -1,0 +1,6 @@
+# Node.js packages and environment-specific secrets must not be committed.
+node_modules/
+.env
+.DS_Store
+dist/
+

@@ -57,3 +57,26 @@ tempCodeRunnerFile.*
 # Generated crawling output
 /스터디 문제/Crawling_Test/images/
 /스터디 문제/Crawling_Test/book_crawling.xlsx
+
+
+# Credentials
+.env
+**/.env
+
+# Local dependencies and build outputs
+venv/
+**/venv/
+node_modules/
+**/node_modules/
+.next/
+**/.next/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+**/.git-history-backup/
+blog/
+
+# Large local dataset
+online_retail_II.csv
+hotel_bookings.csv
+shape/
