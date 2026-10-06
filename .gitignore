@@ -80,3 +80,23 @@ blog/
 online_retail_II.csv
 hotel_bookings.csv
 shape/
+
+# Machine-learning data, weights, and generated experiment output
+/10_MLDL/data/
+/10_MLDL/outputs/
+/runs/
+/11_CV/data/
+/11_CV/runs/
+/11_CV/2_OpenCV/movies/
+/12_NLP/data/
+/12_NLP/model/
+/12_NLP/fasttext.bin
+/12_NLP/ratings.txt
+/12_NLP/ratings_total.txt
+/12_NLP/tokenized_data.txt
+/시험/딥러닝/data/
+/시험/머신러닝/data/
+*.pt
+*.pth
+*.avi
+*.code-workspace
