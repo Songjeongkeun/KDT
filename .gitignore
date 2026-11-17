@@ -100,3 +100,19 @@ shape/
 *.pth
 *.avi
 *.code-workspace
+
+# Local virtual environments and generated ML/agent state
+**/.venv.nosync/
+*.npy
+/14_AGENT/chroma_spri_class_v1/
+/14_AGENT/data/
+/14_AGENT/meetings.db
+/14_AGENT/multi_agent_outputs/
+/14_AGENT/uploads/
+/14_AGENT/practice_440hz.wav
+
+# Personal documents and operating-system clipboard artifacts
+/자기소개서 특강/
+*.textClipping
+
+/자기소개서 특강/
